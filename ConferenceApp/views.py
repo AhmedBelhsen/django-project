@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Conference
-from django.views.generic import ListView,DetailView
-
+from django.views.generic import ListView,DetailView,CreateView
+from django.urls import reverse_lazy
 # Create your views here.
 def all_conference(req):
     conferences=Conference.objects.all()
@@ -21,3 +21,9 @@ class ConferenceDetail(DetailView):
     model=Conference
     context_object_name="conference"
     template_name="Conference/details.html"
+
+class Conferencecreate(CreateView):
+    model=Conference
+    fields='__all__'
+    template_name="Conference/conference_form.html"
+    success_url=reverse_lazy("conference_liste")

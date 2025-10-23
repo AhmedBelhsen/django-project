@@ -10,7 +10,7 @@ from django.core.validators import RegexValidator
 class Conference(models.Model):
 
     def name_conference(name):
-        regex=r'^[a-zA-Z\s]+$'
+        regex = r'^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$'  # accepte les lettres accentuées et les espaces
         if not RegexValidator(regex)(name):
             raise ValidationError("le nom de la conférence ne doit contenir que des lettres et des espaces")
 
@@ -21,7 +21,7 @@ class Conference(models.Model):
         ('Interdisciplinary Themes', 'Interdisciplinary Themes'),
     ]
     conference_id=models.AutoField(primary_key=True)
-    name=models.CharField(max_length=100,validators=[name_conference])
+    name=models.CharField(max_length=100)
     theme=models.CharField(max_length=100,choices=Themechoices)
     start_date=models.DateField()
     end_date=models.DateField()
