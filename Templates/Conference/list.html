@@ -1,5 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
 <h2>La liste des conferences</h2>
-<table border="1">
+<a href="{% url 'conference_create' %}">Ajouter une nouvelle conférence</a>
+<br/>
+<table border="2">
 <tr>
     <td>title</td>
     <td>location</td>
@@ -10,10 +14,12 @@
     <td>{{c.name}}</td>
     <td>{{c.location}}</td>
     <td>
-        <a href="{% url 'conference_detail' c.pk %}">
-            Détails
-        </a>
+        <a href="{% url 'conference_detail' c.pk %}"> Détails</a>
+        <a href="{% url 'conference_update' c.pk %}"> Modifier </a>
+        <a href="{% url 'conference_delete' c.pk %}"> Supprimer </a>
     </td>
+
 </tr>
 {% endfor %}
 </table>
+{%endblock%}

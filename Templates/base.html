@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <header>
+            <h1>Bienvenue à la gestion des conférences</h1>
+            <nav>
+                <a href="{% url 'conference_liste' %}">Liste des conférences</a> |
+                <a>Contact</a>   
+            </nav>
+        </header>
+        <hr>
+        {% block content %}
+        {% endblock %}
+        <hr>
+        <footer>
+            <p> 2025-2026</p>
+            <p> Django workshop </p>
+
+        </footer>
+    </body>
+</html>

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Conference
-from django.views.generic import ListView,DetailView,CreateView
+from .forms import conference_form
+from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 # Create your views here.
 def all_conference(req):
@@ -24,6 +25,19 @@ class ConferenceDetail(DetailView):
 
 class Conferencecreate(CreateView):
     model=Conference
-    fields='__all__'
+    form_class= conference_form
+    #fields= '__all__'
     template_name="Conference/conference_form.html"
+    success_url=reverse_lazy("conference_liste")
+
+class conference_update(UpdateView):
+    model=Conference
+    #fields='__all__'
+    form_class=conference_form #one of the two options to display form
+    template_name="Conference/conference_form.html"
+    success_url=reverse_lazy("conference_liste")
+
+class ConferenceDelete(DeleteView):
+    model=Conference
+    template_name="Conference/conference_confirm_delete.html"
     success_url=reverse_lazy("conference_liste")
